@@ -96,37 +96,21 @@ char *dptr = tape;   // the data pointer from the language's VM
 ```
 
    * `>`
-         ```C
-              ++dptr;
-         ```
+         ++dptr;
    * `<`
-         ```C
-              --dptr;
-         ```
+         --dptr;
    * `+`
-         ```C
-              ++*dptr;
-         ```
+         ++*dptr;
    * `-`
-         ```C
-              --*dptr;
-         ```
+         --*dptr;
    * `.`
-         ```C
-              putchar(*dptr);
-         ```
+         putchar(*dptr);
    * `,`
-         ```C
-              *dptr = getchar();
-         ```
+         *dptr = getchar();
    * `[`
-         ```C
-              while (*dptr) {
-         ```
+         while (*dptr) {
    * `]`
-         ```C
-              }
-         ```
+         }
 
 Specifics
 ---------
