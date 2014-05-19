@@ -2,7 +2,9 @@ BRAINFUCK INTERPRETER v0.1
 ==========================
 
 Last revision: May 19, 2014
+
 Copyright (C) 2014 Radoslav Georgiev
+
 Licensed under the GNU GPL v3
 
 
