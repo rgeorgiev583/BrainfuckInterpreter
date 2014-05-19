@@ -61,23 +61,23 @@ Commands
 
 Brainfuck comprises eight commands, none of which take any parameters:
 
->  increments (increases by one) the data pointer
-   (to point to the next cell to the right).
-<  decrements (decreases by one) the data pointer
-   (to point to the next cell to the left).
-+  increments the byte at the data pointer.
--  decrements the byte at the data pointer.
-.  outputs the value (integer) at the data pointer.
-,  accepts one integer of input, storing its value in the cell at the
-   data pointer.
-[  jumps the instruction pointer forward to the command after the
-   matching ] command if the byte at the data pointer is zero
-   (instead of moving the instruction pointer forward to the next
-   command).
-]  jumps the instruction pointer back to the command after the matching
-   [ command if the byte at the data pointer is nonzero
-   (instead of moving the instruction pointer forward to the next
-   command).
+   * >  increments (increases by one) the data pointer
+        (to point to the next cell to the right).
+   * <  decrements (decreases by one) the data pointer
+        (to point to the next cell to the left).
+   * +  increments the byte at the data pointer.
+   * -  decrements the byte at the data pointer.
+   * .  outputs the value (integer) at the data pointer.
+   * ,  accepts one integer of input, storing its value in the cell at the
+        data pointer.
+   * [  jumps the instruction pointer forward to the command after the
+        matching ] command if the byte at the data pointer is zero
+        (instead of moving the instruction pointer forward to the next
+        command).
+   * ]  jumps the instruction pointer back to the command after the matching
+        [ command if the byte at the data pointer is nonzero
+        (instead of moving the instruction pointer forward to the next
+        command).
 
 NOTE: [ and ] match just like ordinary brackets do: for each [ there
 must be a corresponding ] in the program. If there is an unmatched [,
@@ -86,23 +86,23 @@ the interpreter will raise a syntax error.
 These commands can be translated to the following C statements:
 
 NOTE: It is assumed that the C program includes these definitions:
-<code language="C">
+```C
 #include <stddef.h>
 const size_t MAX_SIZE = 30000; // tape size constraints;
                                   quantity is the minimum; can be more
 char tape[MAX_SIZE] = {}; // the tape from the language's VM;
                              filled with zeroes
 char *dptr = tape;   // the data pointer from the language's VM
-</code>
+```
 
->  ++dptr;
-<  --dptr;
-+  ++*dptr;
--  --*dptr;
-.  putchar(*dptr);
-,  *dptr = getchar();
-[  while (*dptr) {
-]  }
+   * >  ```C ++dptr; ```
+   * <  ```C --dptr; ```
+   * +  ```C ++*dptr; ```
+   * -  ```C --*dptr; ```
+   * .  ```C putchar(*dptr); ```
+   * ,  ```C *dptr = getchar(); ```
+   * [  ```C while (*dptr) { ```
+   * ]  ```C } ```
 
 Specifics
 ---------
