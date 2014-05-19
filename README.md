@@ -79,17 +79,17 @@ Brainfuck comprises eight commands, none of which take any parameters:
           (instead of moving the instruction pointer forward to the next
           command).
 
-NOTE: [ and ] match just like ordinary brackets do: for each [ there
+*NOTE:* [ and ] match just like ordinary brackets do: for each [ there
 must be a corresponding ] in the program. If there is an unmatched [,
 the interpreter will raise a syntax error.
 
 These commands can be translated to the following C statements:
 
-NOTE: It is assumed that the C program includes these definitions:
+*NOTE:* It is assumed that the C program includes these definitions:
 ```C
 #include <stddef.h>
 const size_t MAX_SIZE = 30000; // tape size constraints;
-                                  quantity is the minimum; can be more
+                               // quantity is the minimum; can be more
 char tape[MAX_SIZE] = {}; // the tape from the language's VM;
                              filled with zeroes
 char *dptr = tape;   // the data pointer from the language's VM
@@ -143,9 +143,9 @@ For now none of any importance, apart from accepting a brainfuck program
 from stdin or from a file as input.
 
 Possible suggestions for future releases (milestones):
-- definition of spatial and temporal constraints on the language's VM
-- pbrain (procedural brainfuck) extensions support
-- ...and even support of brainfuck dialects!
+* definition of spatial and temporal constraints on the language's VM
+* pbrain (procedural brainfuck) extensions support
+* ...and even support of brainfuck dialects!
 
 
 Usage
