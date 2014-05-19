@@ -148,5 +148,5 @@ For now, the program offers a minimal command-line interface: it accepts
 the brainfuck program as a command-line argument and writes the output
 of its execution to the standard output.
 
-There are plans for making an interactive console app or even a GUI one.
+There are plans for making an interactive console app, or even a GUI one.
 
