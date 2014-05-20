@@ -141,10 +141,11 @@ The brainfuck Interpreter
 Features
 --------
 
+*Milestone 1 goals:*
 For now none of any importance, apart from accepting a brainfuck program
 from stdin or from a file as input.
 
-Possible suggestions for future releases (milestones):
+*Suggestions for Milestone 2:*
 * definition of spatial and temporal constraints on the language's VM
 * pbrain (procedural brainfuck) extensions support
 * ...and even support of brainfuck dialects!
