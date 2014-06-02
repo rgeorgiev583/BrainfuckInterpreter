@@ -142,8 +142,8 @@ Features
 --------
 
 *Milestone 1 goals:*
-For now none of any importance, apart from accepting a brainfuck program
-from stdin or from a file as input.
+For now none of any special significance, apart from accepting a brainfuck program
+from stdin as input and then executing it.
 
 *Suggestions for Milestone 2:*
 * definition of spatial and temporal constraints on the language's VM
@@ -156,7 +156,7 @@ Usage
 
 
 For now, the program offers a minimal command-line interface: it accepts
-the brainfuck program as a command-line argument and writes the output
+a brainfuck program from the standard input and writes the output
 of its execution to the standard output.
 
 There are plans for making an interactive console app, or even a GUI one.
