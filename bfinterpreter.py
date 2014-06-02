@@ -1,6 +1,7 @@
 __author__ = 'radoslav'
 
 
+# Exception that is thrown when there is an unmatched `]' encountered when executing a brainfuck program
 class UnmatchedBracketError(ValueError):
     def __init__(self, pos):
         self.value = pos
@@ -11,8 +12,8 @@ class UnmatchedBracketError(ValueError):
 
 # Obviously, the brainfuck interpreter class
 class BrainfuckInterpreter:
-    def __init__(self, program='', inputmethod=input, printmethod=print, maxlen_tape=30000, maxsize_cell=256,
-                 is_left_unbound=False):
+    def __init__(self, program='', inputmethod=lambda: int(input()), printmethod=lambda: str(print()),
+                 maxlen_tape=30000, maxsize_cell=256, is_left_unbound=False):
         self.operators = \
         {
             '>': self._next,     # `Next cell' operator
@@ -146,7 +147,7 @@ class BrainfuckInterpreter:
         Input some value to the current cell.
     '''
     def _get(self):
-        self._tape[self._dataptr] = int(self.inputmethod())
+        self._tape[self._dataptr] = self.inputmethod()
 
     '''
         stepinto()
