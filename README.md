@@ -146,8 +146,8 @@ For now none of any special significance, apart from accepting a brainfuck progr
 from stdin as input and then executing it.
 
 *Suggestions for Milestone 2:*
-* definition of spatial and temporal constraints on the language's VM
-* ...and even support of brainfuck dialects!
+* definition of spatial and temporal constraints on the language's VM;
+* support of brainfuck dialects.
 
 
 Usage
