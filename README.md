@@ -147,7 +147,6 @@ from stdin as input and then executing it.
 
 *Suggestions for Milestone 2:*
 * definition of spatial and temporal constraints on the language's VM
-* pbrain (procedural brainfuck) extensions support
 * ...and even support of brainfuck dialects!
 
 
