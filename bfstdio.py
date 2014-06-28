@@ -4,16 +4,14 @@ from bfinterpreter import *
 
 # Input/output wrappers for stdin/file/command-line arguments.
 
-'''
-    mlinput()
+def mlinput():
+    """
+    mlinput() -> list of strings
 
-    Function used to enter multi-line data (used for the program input).
+    Enter multi-line data (used for the program input).
     It works like this: you input the data, then append a blank line and after it a line containing a single `.' to
     terminate the input.
-'''
-
-
-def mlinput():
+    """
     input_list = []
     input_str = input("> ")
 
@@ -23,48 +21,45 @@ def mlinput():
 
     return input_list
 
-'''
-    create_bfi_stdio_numeric(program='')
-
-    Creates and returns a BrainfuckInterpreter initialized with ''program'' (if not, retrieves a brainfuck program from
-    the standard input). The interpreter inputs and outputs respectively from the standard input and output, treating
-    the data as numbers.
-'''
-
 
 def create_bfi_stdio_numeric(program=''):
+    """
+    create_bfi_stdio_numeric(program='') -> BrainfuckInterpreter
+
+    Create and return a BrainfuckInterpreter initialized with ''program'' (if not, retrieve a brainfuck program from
+    the standard input). The interpreter inputs and outputs respectively from the standard input and output, treating
+    the data as numbers.
+    """
     if not program:
         program = ''.join(mlinput())
 
-    return BrainfuckInterpreter(program, printmethod=lambda x: sys.stdout.write(x))
-
-'''
-    create_bfi_stdio_char(program='')
-
-    Creates and returns a BrainfuckInterpreter initialized with ''program'' (if not, retrieves a brainfuck program from
-    the standard input). The interpreter inputs and outputs respectively from the standard input and output, treating
-    the data as characters.
-'''
+    return BrainfuckInterpreter(program, printmethod=lambda x: sys.stdout.write(str(x)))
 
 
 def create_bfi_stdio_char(program=''):
+    """
+    create_bfi_stdio_char(program='') -> BrainfuckInterpreter
+
+    Create and return a BrainfuckInterpreter initialized with ''program'' (if not, retrieve a brainfuck program from
+    the standard input). The interpreter inputs and outputs respectively from the standard input and output, treating
+    the data as characters.
+    """
     if not program:
         program = ''.join(mlinput())
 
     return BrainfuckInterpreter(
         program, inputmethod=lambda: ord(input()), printmethod=lambda x: sys.stdout.write(chr(x))
     )
-
-'''
-    create_bfi_stdio_file_numeric(filename)
-
-    Creates and returns a BrainfuckInterpreter initialized with a brainfuck program retrieved from the file named
-    ''filename''. The interpreter inputs and outputs respectively from the standard input and output, treating the data
-    as numbers.
-'''
 
 
 def create_bfi_stdio_file_numeric(filename):
+    """
+    create_bfi_stdio_file_numeric(filename) -> BrainfuckInterpreter
+
+    Create and return a BrainfuckInterpreter initialized with a brainfuck program retrieved from the file named
+    ''filename''. The interpreter inputs and outputs respectively from the standard input and output, treating the data
+    as numbers.
+    """
     if filename:
         file = open(filename, 'r')
         program = file.read()
@@ -72,18 +67,17 @@ def create_bfi_stdio_file_numeric(filename):
     else:
         program = ''.join(mlinput())
 
-    return BrainfuckInterpreter(program, printmethod=lambda x: sys.stdout.write(x))
-
-'''
-    create_bfi_stdio_file_char(filename)
-
-    Creates and returns a BrainfuckInterpreter initialized with a brainfuck program retrieved from the file named
-    ''filename''. The interpreter inputs and outputs respectively from the standard input and output, treating the data
-    as characters.
-'''
+    return BrainfuckInterpreter(program, printmethod=lambda x: sys.stdout.write(str(x)))
 
 
 def create_bfi_stdio_file_char(filename):
+    """
+    create_bfi_stdio_file_char(filename) -> BrainfuckInterpreter
+
+    Create and return a BrainfuckInterpreter initialized with a brainfuck program retrieved from the file named
+    ''filename''. The interpreter inputs and outputs respectively from the standard input and output, treating the data
+    as characters.
+    """
     if filename:
         file = open(filename, 'r')
         program = file.read()
@@ -95,31 +89,29 @@ def create_bfi_stdio_file_char(filename):
         program, inputmethod=lambda: ord(input()), printmethod=lambda x: sys.stdout.write(chr(x))
     )
 
-'''
-    create_bfi_stdio_cli_numeric(program='')
-
-    Creates and returns a BrainfuckInterpreter initialized with ''program'' (if not, retrieves a brainfuck program from
-    the first command-line argument). The interpreter inputs and outputs respectively from the standard input and
-    output, treating the data as numbers.
-'''
-
 
 def create_bfi_stdio_cli_numeric(program=''):
+    """
+    create_bfi_stdio_cli_numeric(program='') -> BrainfuckInterpreter
+
+    Create and return a BrainfuckInterpreter initialized with ''program'' (if not, retrieve a brainfuck program from
+    the first command-line argument). The interpreter inputs and outputs respectively from the standard input and
+    output, treating the data as numbers.
+    """
     if not program:
         program = sys.argv[1]
 
-    return BrainfuckInterpreter(program, printmethod=lambda x: sys.stdout.write(x))
-
-'''
-    create_bfi_stdio_cli_char(program='')
-
-    Creates and returns a BrainfuckInterpreter initialized with ''program'' (if not, retrieves a brainfuck program from
-    the first command-line argument). The interpreter inputs and outputs respectively from the standard input and
-    output, treating the data as characters.
-'''
+    return BrainfuckInterpreter(program, printmethod=lambda x: sys.stdout.write(str(x)))
 
 
 def create_bfi_stdio_cli_char(program=''):
+    """
+    create_bfi_stdio_cli_char(program='') -> BrainfuckInterpreter
+
+    Create and return a BrainfuckInterpreter initialized with ''program'' (if not, retrieve a brainfuck program from
+    the first command-line argument). The interpreter inputs and outputs respectively from the standard input and
+    output, treating the data as characters.
+    """
     if not program:
         program = sys.argv[1]
 
