@@ -1,6 +1,6 @@
 __author__ = 'radoslav'
 import sys
-from bfinterpreter import *
+from bfinterpreter import UnmatchedBracketError, BrainfuckInterpreter
 
 # Input/output wrappers for stdin/file/command-line arguments.
 

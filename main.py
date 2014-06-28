@@ -1,10 +1,10 @@
 __author__ = 'radoslav'
-from bfstdio import *
+import bfplatform
 
-bfi = create_bfi_stdio_char(
+bfi = bfplatform.create_bfi_stdio_char(
     "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++."
 )
 bfi.run()
 
-#bfi = create_bfi_stdio_numeric()
-#bfi.run()
+bfi = bfplatform.create_bfi_stdio_numeric()
+bfi.run()

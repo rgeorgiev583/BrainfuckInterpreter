@@ -15,36 +15,37 @@ class UnmatchedBracketError(ValueError):
 class BrainfuckInterpreter:
     # The brainfuck interpreter class. Use it to create an interpreter for a specific brainfuck program with the given
     # options (IO methods and size constraints).
-    """
-    BrainfuckInterpreter() -> new brainfuck interpreter initialized without a program, using ''int(input())'' for input
-    method and ''str(print(x))'' (where `x' is the thing to print) for output method, with maximum tape length of 30000
-    (30000 to the left and the same amount to the right), maximum cell size of 256 (as in 256 different values), and
-    left-boundedness.
-    BrainfuckInterpreter(program='', inputmethod=lambda: int(input()), printmethod=lambda x: str(print(x)),
-    maxlen_tape=30000, maxsize_cell=256, is_left_unbound=False) -> new brainfuck interpreter initialized with
-    ''program'' with the given options as subsequent arguments.
-    """
+
     def __init__(self, program='', inputmethod=lambda: int(input()), printmethod=lambda x: str(print(x)),
-                 maxlen_tape=30000, maxsize_cell=256, is_left_unbound=False):
+                 maxlen_tape=30000, maxsize_cell=256, is_left_unbound=False,
+                 operator_tokens=('>', '<', '+', '-', '[', ']', '.', ',')):
+        """
+        BrainfuckInterpreter() -> new brainfuck interpreter initialized without a program, using ''int(input())'' for
+        input method and ''str(print(x))'' (where `x' is the thing to print) for output method, with maximum tape length
+        of 30000 (30000 to the left and the same amount to the right), maximum cell size of 256 (as in 256 different
+        values), left-boundedness and using the default brainfuck operator lexical symbols (as opposed to a brainfuck
+        dialect (aka isomorph)).
+        BrainfuckInterpreter(program='', inputmethod=lambda: int(input()), printmethod=lambda x: str(print(x)),
+        maxlen_tape=30000, maxsize_cell=256, is_left_unbound=False,
+        operator_tokens=('>', '<', '+', '-', '[', ']', '.', ','))) -> new brainfuck interpreter initialized with
+        ''program'' with the given options as subsequent arguments.
+        """
+        default_tokens = ('>', '<', '+', '-', '[', ']', '.', ',')
+        if operator_tokens != default_tokens:
+            for (i, token) in enumerate(operator_tokens):
+                program.replace(token, default_tokens[i])
+
         """ Brainfuck operators """
         self.operators = \
         {
-            """ ``Go to next cell'' operator """
-            '>': self._next,
-            """ ``Go to previous cell'' operator """
-            '<': self._prev,
-            """ ``Increment value at current cell'' operator """
-            '+': self._incr,
-            """ ``Decrement value at current cell'' operator """
-            '-': self._decr,
-            """ ``Loop code between `[' and `]' until value at current cell is 0'' operator """
-            '[': self._loop,
-            """ ``End of loop'' operator """
-            ']': self._endloop,
-            """ ``Output value at cell'' operator """
-            '.': self._put,
-            """ ``Input value to cell'' operator """
-            ',': self._get
+            '>': self._next,     # ``Go to next cell'' operator
+            '<': self._prev,     # ``Go to previous cell'' operator
+            '+': self._incr,     # ``Increment value at current cell'' operator
+            '-': self._decr,     # ``Decrement value at current cell'' operator
+            '[': self._loop,     # ``Loop code between `[' and `]' until value at current cell is 0'' operator
+            ']': self._endloop,  # ``End of loop'' operator
+            '.': self._put,      # ``Output value at cell'' operator
+            ',': self._get       # ``Input value to cell'' operator
         }
         """ Method used to request data from the user (defaults to ''lambda: int(input())''). """
         self.inputmethod = inputmethod
@@ -63,9 +64,8 @@ class BrainfuckInterpreter:
         self._tape = [0]
         """ Length of the tape to the left (i.e. the number of cells to the left of the zero-indexed cell). """
         self._leftlen_tape = 0
-        """
-        Length of the tape to the right (i.e. the number of cells to the right of the zero-indexed cell including
-        the latter).
+        """ Length of the tape to the right (i.e. the number of cells to the right of the zero-indexed cell including
+            the latter).
         """
         self._rightlen_tape = 1
         """ The data pointer: an integer that specifies the position of the current cell on the tape. """
